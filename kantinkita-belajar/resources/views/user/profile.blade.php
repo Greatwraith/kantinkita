@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil Pengguna</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-[Poppins] min-h-screen">
+
+  <!-- HEADER MERAH Figma -->
+  <header class="bg-[#b30713] p-4 flex justify-between items-center text-white">
+    <h1 class="text-xl font-semibold">Profil Saya</h1>
+    <a href="/dashboard" class="text-sm underline">Kembali</a>
+  </header>
+
+  <div class="max-w-5xl mx-auto mt-8">
+
+    <!-- ============ CARD INFORMASI USER ============ -->
+    <div class="bg-white rounded-xl shadow p-6 mb-10">
+
+      <!-- FOTO + NAMA seperti Figma -->
+      <div class="flex items-center gap-4 mb-6">
+        <img src="{{ $user->avatar ?? 'https://i.pravatar.cc/120' }}" 
+             class="w-24 h-24 rounded-full object-cover border">
+        <div>
+          <h2 class="text-xl font-bold">{{ $user->name }}</h2>
+          <p class="text-gray-600 text-sm">{{ $user->nis ?? '-' }}</p>
+          <p class="text-gray-600 text-sm">{{ $user->kelas ?? '-' }} | {{ $user->jurusan ?? '-' }}</p>
+        </div>
+      </div>
+
+      <h3 class="font-semibold text-lg mb-4 flex items-center gap-2">
+        Riwayat Pesanan
+      </h3>
+
+      <!-- GRID INFO USER seperti Figma -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <div>
+          <p class="text-sm text-gray-500">Nama Lengkap</p>
+          <p class="font-semibold">{{ $user->name }}</p>
+        </div>
+
+        <div>
+          <p class="text-sm text-gray-500">NIS</p>
+          <p class="font-semibold">{{ $user->nis ?? '-' }}</p>
+        </div>
+
+        <div>
+          <p class="text-sm text-gray-500">Email</p>
+          <p class="font-semibold">{{ $user->email }}</p>
+        </div>
+
+        <div>
+          <p class="text-sm text-gray-500">Nomor Telepon</p>
+          <p class="font-semibold">{{ $user->telepon ?? '-' }}</p>
+        </div>
+
+      
+
+        <div>
+        
+        </div>
+
+      </div>
+
+      <div class="mt-6">
+        <a href="/user/profil/edit"
+           class="px-4 py-2 text-white rounded-lg ">
+           
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ============ CARD RIWAYAT PESANAN ============ -->
+    <div class="bg-white rounded-xl shadow p-6 mb-20">
+
+      <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+        <span class="text-red-600">📦</span> Riwayat Pesanan
+      </h2>
+
+      @if($orders->isEmpty())
+        <p class="text-gray-500 text-sm">Belum ada pesanan.</p>
+      @else
+
+      <!-- TABLE RIWAYAT PESANAN SESUAI FIGMA -->
+      <div class="divide-y">
+        @foreach($orders as $order)
+          <div class="py-4 grid grid-cols-3 gap-4 items-center">
+
+            <!-- TANGGAL -->
+            <div>
+              <p class="font-semibold text-gray-800">Tanggal Pemesanan</p>
+              <p class="text-sm text-gray-600">
+                {{ $order->created_at->format('l, d F Y') }}
+              </p>
+            </div>
+
+            <!-- DETAIL PESANAN -->
+            <div>
+              <p class="font-semibold text-gray-800">Detail Pesanan</p>
+              <p class="text-sm text-gray-600">
+                @foreach($order->detailTransaksi as $item)
+                  {{ $item->menu->nama_menu }} ({{ $item->jumlah }}),
+                @endforeach
+              </p>
+            </div>
+
+            <!-- TOTAL -->
+            <div class="text-right">
+              <p class="font-semibold text-gray-800">
+                Rp {{ number_format($order->detailTransaksi->sum('sub_total'), 0, ',', '.') }}
+              </p>
+              <p class="text-sm text-gray-600">
+                {{ $order->detailTransaksi->count() }} Produk
+              </p>
+            </div>
+
+          </div>
+        @endforeach
+      </div>
+
+      @endif
+    </div>
+
+  </div>
+
+</body>
+</html>
