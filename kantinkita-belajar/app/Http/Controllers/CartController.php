@@ -89,4 +89,56 @@ class CartController extends Controller
                      ->with('success', 'Keranjang berhasil diperbarui.');
 }
 
+public function updateAll(Request $request)
+{
+    $dataJumlah = $request->input('jumlah'); // array: id_keranjang => jumlah baru
+
+    foreach ($dataJumlah as $id_keranjang => $jumlahBaru) {
+
+        $cart = Cart::find($id_keranjang);
+        if (!$cart) continue;
+
+        $menu = Menu::find($cart->id_menu);
+
+        if ($jumlahBaru < 1) $jumlahBaru = 1;
+        if ($jumlahBaru > $menu->stok_menu)
+            return back()->with('error', 'Stok tidak mencukupi untuk ' . $menu->nama_menu);
+
+        // update
+        $cart->jumlah = $jumlahBaru;
+        $cart->total_harga = $jumlahBaru * $menu->harga_menu;
+        $cart->save();
+    }
+
+    return redirect()->route('user.cart.index')
+                     ->with('success', 'Keranjang berhasil diperbarui!');
+}
+
+
+public function destroy($id)
+{
+    $cart = Cart::findOrFail($id);
+
+    // pastikan hanya pemilik keranjang yang bisa hapus
+    if ($cart->id_user != Auth::user()->id_user) {
+        return back()->with('error', 'Akses ditolak');
+    }
+
+    $cart->delete();
+
+    // kalau keranjang sudah kosong
+    $remaining = Cart::where('id_user', Auth::user()->id_user)->first();
+    
+    if (!$remaining) {
+        return redirect()->route('user.cart.index')
+                         ->with('success', 'Item berhasil dihapus!');
+    }
+
+    // redirect ke edit page, pakai id item pertama yang tersisa
+    return redirect()->route('user.cart.edit', $remaining->id_keranjang)
+                     ->with('success', 'Item berhasil dihapus!');
+}
+
+
+
 }

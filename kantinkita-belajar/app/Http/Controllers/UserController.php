@@ -161,6 +161,8 @@ public function goDashboard()
     ->pluck('total', 'bulan')
     ->toArray();
 
+    
+
         return view('admin.dashboard', compact(
             'menus',
             'totalPesanan',

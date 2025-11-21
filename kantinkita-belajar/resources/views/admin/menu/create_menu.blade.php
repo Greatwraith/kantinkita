@@ -43,100 +43,81 @@
             </a>
 
             {{-- Form --}}
-            <form action="{{ route('admin.menu.store') }}" method="POST" enctype="multipart/form-data"
-                  class="bg-white p-6 rounded-lg border border-gray-200 w-full">
-                @csrf
+          <form action="{{ route('admin.menu.store') }}" method="POST" enctype="multipart/form-data"
+      class="bg-red-700 p-6 rounded-lg border border-gray-200 w-full text-white">
+    @csrf
 
-                {{-- Kategori --}}
-                <div class="mb-4">
-                    <label for="nama_kategori" class="block text-gray-700 font-medium mb-2">Kategori Menu</label>
-                    <select name="nama_kategori" id="nama_kategori"
-                            class="w-full border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 p-2"
-                            required>
-                        <option value="">-- Pilih Kategori --</option>
-                        <option value="Makanan" {{ old('nama_kategori') == 'Makanan' ? 'selected' : '' }}>Makanan</option>
-                        <option value="Minuman" {{ old('nama_kategori') == 'Minuman' ? 'selected' : '' }}>Minuman</option>
-                    </select>
-                    @error('nama_kategori')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+    {{-- Kategori --}}
+    <div class="mb-4">
+        <label for="nama_kategori" class="block font-medium mb-2 text-white">Kategori Menu</label>
+        <select name="nama_kategori" id="nama_kategori"
+                class="w-full border bg-white text-black rounded-md focus:ring-red-300 focus:border-red-300 p-2"
+                required>
+            <option value="">-- Pilih Kategori --</option>
+            <option value="Makanan" {{ old('nama_kategori') == 'Makanan' ? 'selected' : '' }}>Makanan</option>
+            <option value="Minuman" {{ old('nama_kategori') == 'Minuman' ? 'selected' : '' }}>Minuman</option>
+        </select>
+    </div>
 
-                {{-- Nama Menu --}}
-                <div class="mb-4">
-                    <label for="nama_menu" class="block text-gray-700 font-medium mb-2">Nama Menu</label>
-                    <input type="text" name="nama_menu" id="nama_menu" value="{{ old('nama_menu') }}"
-                           class="w-full border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 p-2"
-                           required>
-                    @error('nama_menu')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+    {{-- Nama Menu --}}
+    <div class="mb-4">
+        <label for="nama_menu" class="block font-medium mb-2 text-white">Nama Menu</label>
+        <input type="text" name="nama_menu" id="nama_menu" value="{{ old('nama_menu') }}"
+               class="w-full border bg-white text-black rounded-md focus:ring-red-300 focus:border-red-300 p-2"
+               required>
+    </div>
 
-                {{-- Harga --}}
-                <div class="mb-4">
-                    <label for="harga_menu" class="block text-gray-700 font-medium mb-2">Harga Menu</label>
-                    <input type="number" name="harga_menu" id="harga_menu" value="{{ old('harga_menu') }}"
-                           class="w-full border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 p-2"
-                           min="1000" required>
-                    @error('harga_menu')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+    {{-- Harga --}}
+    <div class="mb-4">
+        <label for="harga_menu" class="block font-medium mb-2 text-white">Harga Menu</label>
+        <input type="number" name="harga_menu" id="harga_menu" value="{{ old('harga_menu') }}"
+               class="w-full border bg-white text-black rounded-md focus:ring-red-300 focus:border-red-300 p-2"
+               min="1000" required>
+    </div>
 
-                {{-- Deskripsi --}}
-                <div class="mb-4">
-                    <label for="deskripsi_menu" class="block text-gray-700 font-medium mb-2">Deskripsi Menu</label>
-                    <textarea name="deskripsi_menu" id="deskripsi_menu" rows="4"
-                              class="w-full border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 p-2"
-                              required>{{ old('deskripsi_menu') }}</textarea>
-                    @error('deskripsi_menu')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+    {{-- Deskripsi --}}
+    <div class="mb-4">
+        <label for="deskripsi_menu" class="block font-medium mb-2 text-white">Deskripsi Menu</label>
+        <textarea name="deskripsi_menu" id="deskripsi_menu" rows="4"
+                  class="w-full border bg-white text-black rounded-md focus:ring-red-300 focus:border-red-300 p-2"
+                  required>{{ old('deskripsi_menu') }}</textarea>
+    </div>
 
-                {{-- Gambar --}}
-                <div class="mb-4">
-                    <label for="gambar_menu" class="block text-gray-700 font-medium mb-2">Gambar Menu</label>
-                    <input type="file" name="gambar_menu" id="gambar_menu" accept="image/*"
-                           class="w-full border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 p-2"
-                           {{ old('gambar_menu') ? '' : 'required' }}>
-                    @error('gambar_menu')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+    {{-- Gambar --}}
+    <div class="mb-4">
+        <label for="gambar_menu" class="block font-medium mb-2 text-white">Gambar Menu</label>
+        <input type="file" name="gambar_menu" id="gambar_menu" accept="image/*"
+               class="w-full border bg-white text-black rounded-md focus:ring-red-300 focus:border-red-300 p-2"
+               {{ old('gambar_menu') ? '' : 'required' }}>
+    </div>
 
-                {{-- Status --}}
-                <div class="mb-4">
-                    <label for="status_menu" class="block text-gray-700 font-medium mb-2">Status Menu</label>
-                    <select name="status_menu" id="status_menu"
-                            class="w-full border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 p-2"
-                            required>
-                        <option value="tersedia" {{ old('status_menu') == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-                        <option value="habis" {{ old('status_menu') == 'habis' ? 'selected' : '' }}>Habis</option>
-                    </select>
-                    @error('status_menu')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+    {{-- Status --}}
+    <div class="mb-4">
+        <label for="status_menu" class="block font-medium mb-2 text-white">Status Menu</label>
+        <select name="status_menu" id="status_menu"
+                class="w-full border bg-white text-black rounded-md focus:ring-red-300 focus:border-red-300 p-2"
+                required>
+            <option value="tersedia" {{ old('status_menu') == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
+            <option value="habis" {{ old('status_menu') == 'habis' ? 'selected' : '' }}>Habis</option>
+        </select>
+    </div>
 
-                {{-- Stok --}}
-                <div class="mb-6">
-                    <label for="stok_menu" class="block text-gray-700 font-medium mb-2">Stok Menu</label>
-                    <input type="number" name="stok_menu" id="stok_menu" value="{{ old('stok_menu') }}"
-                           class="w-full border border-gray-300 rounded-md focus:ring-red-500 focus:border-red-500 p-2"
-                           required>
-                    @error('stok_menu')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+    {{-- Stok --}}
+    <div class="mb-6">
+        <label for="stok_menu" class="block font-medium mb-2 text-white">Stok Menu</label>
+        <input type="number" name="stok_menu" id="stok_menu" value="{{ old('stok_menu') }}"
+               class="w-full border bg-white text-black rounded-md focus:ring-red-300 focus:border-red-300 p-2"
+               required>
+    </div>
 
-                {{-- Submit --}}
-                <button type="submit"
-                        class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-md transition w-full flex justify-center items-center gap-2 font-semibold">
-                    <i class="fa-solid fa-save"></i> Simpan Menu
-                </button>
-            </form>
+    {{-- Submit --}}
+    <button type="submit"
+            class="bg-white hover:bg-gray-100 text-red-700 px-6 py-2 rounded-md transition w-full flex justify-center items-center gap-2 font-semibold">
+        <i class="fa-solid fa-save"></i> Simpan Menu
+    </button>
+
+</form>
+
 
             {{-- SweetAlert Feedback --}}
             @include('components.alerts')

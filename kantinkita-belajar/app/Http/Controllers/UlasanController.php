@@ -27,8 +27,12 @@ class UlasanController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:35840',
         ]);
 
+        $userId = auth()->user()->id_user;
+
         // Cek user sudah punya ulasan
-        if (auth()->user()->ulasan) {
+        $existing = Ulasan::where('id_user', $userId)->first();
+
+        if ($existing) {
             return redirect()->route('ulasan.index')
                              ->with('error', 'Kamu sudah memberi ulasan!');
         }
@@ -38,7 +42,7 @@ class UlasanController extends Controller
             : null;
 
         Ulasan::create([
-            'id_user' => auth()->user()->id_user,
+            'id_user' => $userId,
             'rating'  => $request->rating,
             'ulasan'  => $request->ulasan,
             'gambar'  => $gambarPath,
@@ -50,7 +54,9 @@ class UlasanController extends Controller
 
     public function edit()
     {
-        $ulasan = auth()->user()->ulasan;
+        $userId = auth()->user()->id_user;
+
+        $ulasan = Ulasan::where('id_user', $userId)->first();
 
         if (!$ulasan) {
             return redirect()->route('ulasan.create');
@@ -61,7 +67,9 @@ class UlasanController extends Controller
 
     public function update(Request $request)
     {
-        $ulasan = auth()->user()->ulasan;
+        $userId = auth()->user()->id_user;
+
+        $ulasan = Ulasan::where('id_user', $userId)->first();
 
         if (!$ulasan) {
             return redirect()->route('ulasan.create');
@@ -87,12 +95,15 @@ class UlasanController extends Controller
         $ulasan->ulasan = $request->ulasan;
         $ulasan->save();
 
-        return redirect()->route('ulasan.index')->with('success', 'Ulasan berhasil diperbarui!');
+        return redirect()->route('ulasan.index')
+                         ->with('success', 'Ulasan berhasil diperbarui!');
     }
 
     public function destroy()
     {
-        $ulasan = auth()->user()->ulasan;
+        $userId = auth()->user()->id_user;
+
+        $ulasan = Ulasan::where('id_user', $userId)->first();
 
         if (!$ulasan) {
             return redirect()->route('ulasan.index')->with('error', 'Tidak ada ulasan untuk dihapus.');
@@ -104,6 +115,7 @@ class UlasanController extends Controller
 
         $ulasan->delete();
 
-        return redirect()->route('ulasan.index')->with('success', 'Ulasan berhasil dihapus.');
+        return redirect()->route('ulasan.index')
+                         ->with('success', 'Ulasan berhasil dihapus.');
     }
 }

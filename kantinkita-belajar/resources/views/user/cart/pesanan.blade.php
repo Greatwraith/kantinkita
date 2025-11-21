@@ -1,135 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pesanan Saya</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fafafa;
-            color: #222;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            padding: 20px 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        header nav a {
-            margin: 0 20px;
-            color: #e53935;
-            font-weight: 500;
-            text-decoration: none;
-        }
-        header nav a:hover { text-decoration: underline; }
-        h1 { text-align: left; margin: 30px 60px; font-size: 28px; font-weight: 600; }
-        .container { display: flex; justify-content: space-between; margin: 0 60px 60px; gap: 30px; }
-        .left { flex: 2; }
-
-        .item-box {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 25px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-        }
-        .item { display: flex; align-items: center; justify-content: space-between;
-            border-top: 1px solid #eee; padding-top: 15px; margin-top: 15px; }
-        .item img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; }
-        .item-info { flex: 1; margin-left: 15px; }
-        .item-info h4 { margin: 0; font-size: 16px; font-weight: 600; }
-        .item-info p { color: #d32f2f; font-weight: 500; margin-top: 4px; }
-        .item-summary { text-align: right; font-size: 15px; }
-        .item-summary span { display: block; }
-
-        .btn-cancel {
-            width: 100%;
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 15px;
-            background: #f57c00;
-            color: white;
-        }
-        .btn-cancel:hover { background: #ef6c00; }
-    </style>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
-</head>
-<body>
+<body class="bg-white-800 font-[Poppins] text-gray-800">
 
-<header>
-    <nav>
-        <a href="#">Beranda</a>
-        <a href="{{ route('user.menu.index') }}">Menu</a>
-    </nav>
-    <div class="user-circle">A</div>
-</header>
+@include('components.navbar')
 
-<h1>Pesanan Saya</h1>
+<h1 class="text-2xl font-semibold mt-8 mb-6 px-8">Pesanan Saya</h1>
 
 @if($pesanan->isEmpty())
-    <p style="text-align:center; color:#999;">Belum ada pesanan 😅</p>
+    <p class="text-center text-gray-500">Belum ada pesanan 😅</p>
 @else
-<div class="container">
-    <div class="left">
+<div class="px-8 mb-10">
+    <div class="flex flex-col gap-6">
         @foreach($pesanan as $t)
-        <div class="item-box">
+        <div class="bg-white shadow-md rounded-xl p-6">
 
             {{-- Tanggal pesanan --}}
-            <span style="font-size:13px; color:#666;">
+            <span class="text-sm text-gray-500">
                 {{ $t->created_at ? $t->created_at->format('d M Y, H:i') : '-' }}
             </span>
 
             {{-- STATUS --}}
             @if($t->status_pesanan === 'menunggu')
-                <div style="margin-top:6px; font-size:14px; font-weight:600; color:#f57c00;">
-                    Menunggu Konfirmasi Admin
-                </div>
+                <div class="mt-2 text-orange-600 font-semibold text-sm">Menunggu Konfirmasi Admin</div>
             @elseif($t->status_pesanan === 'completed')
-                <div style="margin-top:6px; font-size:14px; font-weight:600; color:#43a047;">
-                    ✔️ Pesanan Selesai
-                </div>
+                <div class="mt-2 text-green-600 font-semibold text-sm">✔️ Pesanan Selesai</div>
             @elseif($t->status_pesanan === 'canceled')
-                <div style="margin-top:6px; font-size:14px; font-weight:600; color:#e53935;">
-                    ❌ Pesanan Dibatalkan
-                </div>
+                <div class="mt-2 text-red-600 font-semibold text-sm">❌ Pesanan Dibatalkan</div>
             @endif
 
             {{-- DETAIL ITEM --}}
             @foreach($t->detailTransaksi as $detail)
-            <div class="item">
-                <img src="{{ asset('storage/'.$detail->menu->gambar_menu) }}" alt="{{ $detail->menu->nama_menu }}">
-                <div class="item-info">
-                    <h4>{{ $detail->menu->nama_menu }}</h4>
-                    <p>Rp {{ number_format($detail->harga_satuan,0,',','.') }}</p>
+            <div class="flex items-center justify-between border-t pt-4 mt-4">
+                <img src="{{ asset('storage/'.$detail->menu->gambar_menu) }}" alt="{{ $detail->menu->nama_menu }}" class="w-20 h-20 rounded-lg object-cover" />
+
+                <div class="flex-1 ml-4">
+                    <h4 class="text-base font-semibold">{{ $detail->menu->nama_menu }}</h4>
+                    <p class="text-red-600 font-medium mt-1">Rp {{ number_format($detail->harga_satuan,0,',','.') }}</p>
                 </div>
-                <div class="item-summary">
-                    <span>Jumlah: {{ $detail->jumlah }}</span>
-                    <span>Subtotal: Rp {{ number_format($detail->sub_total,0,',','.') }}</span>
+
+                <div class="text-right text-sm">
+                    <span class="block">Jumlah: {{ $detail->jumlah }}</span>
+                    <span class="block font-semibold">Subtotal: Rp {{ number_format($detail->sub_total,0,',','.') }}</span>
                 </div>
             </div>
             @endforeach
 
             {{-- TOMBOL DETAIL --}}
-            <a href="{{ route('user.pesanan.show', $t->id_transaksi) }}"
-                style="font-size:14px; color:#1976d2; text-decoration:none; font-weight:600; display:block; margin-top:12px;">
+            <a href="{{ route('user.pesanan.show', $t->id_transaksi) }}" class="text-blue-600 text-sm font-semibold mt-4 inline-block">
                 Lihat Detail →
             </a>
 
             {{-- TOMBOL BATAL --}}
             @if($t->status_pesanan === 'menunggu')
-            <form action="{{ route('user.pesanan.cancel', $t->id_transaksi) }}" method="POST">
+            <form action="{{ route('user.pesanan.cancel', $t->id_transaksi) }}" method="POST" class="mt-3">
                 @csrf
-                <button type="submit" class="btn-cancel">Batalkan Pesanan</button>
+                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg text-sm">Batalkan Pesanan</button>
             </form>
             @endif
 
@@ -138,6 +71,8 @@
     </div>
 </div>
 @endif
+
+@include('components.footer')
 
 </body>
 </html>

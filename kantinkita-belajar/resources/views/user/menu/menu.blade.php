@@ -6,25 +6,26 @@
   <title>Kantin Kita - Menu</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
 </head>
 
 <body class="bg-[#F9FAFB] font-[Poppins] text-gray-800">
 
-  {{-- ✅ Navbar --}}
+  {{-- Navbar --}}
   @include('components.navbar')
   
-
-  {{-- 🔴 Banner --}}
+  {{-- Banner --}}
   <section class="bg-red-700 text-white py-16 px-6 rounded-xl mx-6 mt-6 flex justify-center items-center text-center">
     <h2 class="text-lg md:text-xl font-semibold">Banner (menu baru, info diskon, dll)</h2>
   </section>
 
-  <div class="container mx-auto px-6 py-10 relative">
 
-    {{-- 🔍 Filter & Sort --}}
+<div class="container mx-auto px-6 py-10 relative mb-52 pb-20">
+
+    {{-- Filter & Sort --}}
     <div class="relative flex items-center justify-between border-b pb-4 mb-6">
 
-      {{-- 🎯 Kategori (DI-CENTER-KAN) --}}
       <div class="absolute left-1/2 -translate-x-1/2 flex gap-6 text-sm font-medium">
         <a href="?filter=all"
            class="{{ request('filter') == 'all' || !request('filter') ? 'text-black border-b-2 border-black' : 'text-gray-500 hover:text-black' }}">
@@ -42,7 +43,6 @@
         </a>
       </div>
 
-      {{-- 🔽 Sort Dropdown (TIDAK DIUBAH) --}}
       <form method="GET" class="ml-auto flex items-center">
         <input type="hidden" name="filter" value="{{ request('filter') }}">
         <select name="sort"
@@ -56,12 +56,12 @@
 
     </div>
 
-    {{-- 🧾 List Menu --}}
+    {{-- List Menu --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       @forelse ($semuamenu as $menu)
         <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition p-3 flex flex-col">
 
-          {{-- Gambar + Badge Habis --}}
+          {{-- Gambar --}}
           <div class="relative">
             @if ($menu->gambar_menu)
               <img src="{{ asset('storage/' . $menu->gambar_menu) }}"
@@ -73,7 +73,7 @@
               </div>
             @endif
 
-            {{-- 🔴 Badge Habis --}}
+            {{-- Badge Habis --}}
             @if ($menu->stok_menu <= 0 || $menu->status_menu == 'habis')
               <span class="absolute top-2 right-2 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
                 Habis
@@ -82,37 +82,74 @@
           </div>
 
           {{-- Info Menu --}}
-          <div class="flex-1 flex flex-col">
-            <h2 class="font-semibold text-base mb-1">{{ $menu->nama_menu }}</h2>
-            <p class="text-gray-500 text-sm mb-2">{{ $menu->nama_kategori }}</p>
-            <p class="text-gray-800 font-medium mb-3">
-              Rp {{ number_format($menu->harga_menu, 0, ',', '.') }}
-            </p>
+          <div class="flex-1 flex flex-col pt-1">
 
-            {{-- 🔘 Tombol --}}
-            @if ($menu->stok_menu <= 0 || $menu->status_menu == 'habis')
-              <button
-                class="mt-auto inline-block px-4 py-2 rounded-full bg-gray-400 text-white text-center cursor-not-allowed">
-                Stok Habis
-              </button>
-            @else
-              <a href="{{ route('user.menu.show', ['id' => $menu->id_menu, 'search' => request('search')]) }}" 
-                 class="mt-auto inline-block px-4 py-2 rounded-full bg-red-600 text-white text-center hover:bg-red-700 transition">
-                Lihat Detail
-              </a>
-            @endif
+              <h2 class="font-semibold text-lg mb-1 leading-tight">{{ $menu->nama_menu }}</h2>
+              <p class="text-gray-500 text-sm mb-3">{{ $menu->nama_kategori }}</p>
+
+              {{-- Harga + Tombol (Kanan) --}}
+              <div class="flex items-center justify-between mb-4">
+                  <p class="text-red-600 font-semibold text-xl">
+                      Rp {{ number_format($menu->harga_menu, 0, ',', '.') }}
+                  </p>
+
+                  @if ($menu->stok_menu <= 0 || $menu->status_menu == 'habis')
+                      <button
+                          class="px-3 py-1 text-xs rounded-md bg-gray-300 text-white font-semibold cursor-not-allowed">
+                          Habis
+                      </button>
+                  @else
+                      <a href="{{ route('user.menu.show', ['id' => $menu->id_menu]) }}" 
+                         class="flex items-center gap-1 px-5 py-2 text-l rounded-md bg-red-600 text-white 
+                                font-semibold hover:bg-red-700 transition">
+                          <x-ionicon-cart-outline class="w-6 h-6"/>
+                          Pesan
+                      </a>
+                  @endif
+              </div>
+
           </div>
 
         </div>
       @empty
-        <p class="col-span-full text-center text-gray-500">Tidak ada menu tersedia.</p>
+        <p class="col-span-full text-center text-gray-500 mt-20 text-lg">Tidak ada menu tersedia.</p>
       @endforelse
     </div>
 
   </div>
 
-  {{-- SweetAlert --}}
   @include('components.alerts')
+
+
+
+  @include('components.footer')
+
+
+
+
+
+@if($total_items > 0)
+    <a href="{{ route('user.cart.index') }}"
+       class="fixed bottom-5 left-1/2 -translate-x-1/2 w-[95%] md:w-[850px]
+              bg-[#A00000] text-white rounded-2xl shadow-2xl px-6 py-4 z-50 
+              flex justify-between items-center cursor-pointer active:scale-95 transition">
+
+        <div class="flex items-center gap-2 text-lg font-semibold">
+            <x-ionicon-cart-outline class="w-6 h-6"/>
+            {{ $total_items }} produk
+        </div>
+
+        <div class="text-lg font-semibold">
+            Rp {{ number_format($total_price, 0, ',', '.') }}
+        </div>
+
+    </a>
+@endif
+
+
 
 </body>
 </html>
+
+
+

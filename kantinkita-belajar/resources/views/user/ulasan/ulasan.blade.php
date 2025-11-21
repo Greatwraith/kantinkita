@@ -22,20 +22,22 @@
   <header class="bg-white shadow p-4 mb-6 flex items-center justify-between">
     <h1 class="text-xl font-semibold text-gray-800">Ulasan Pelanggan</h1>
 
-    @if(auth()->user()->ulasan)
-        <!-- Jika sudah pernah ulasan → tombol Edit -->
-        <a href="{{ route('ulasan.edit') }}" 
-           class="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold">
-            Edit Ulasan Saya
-        </a>
+   @php
+   $myUlasan = \App\Models\Ulasan::where('id_user', auth()->user()->id_user)->first();
+@endphp
 
-    @else
-        <!-- Jika belum → tombol Tulis -->
-        <a href="{{ route('ulasan.create') }}" 
-           class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold">
-            Tulis Ulasan
-        </a>
-    @endif
+@if($myUlasan)
+    <a href="{{ route('ulasan.edit') }}" 
+       class="bg-green-600 text-white px-4 py-2 rounded-lg font-semibold">
+        Edit Ulasan Saya
+    </a>
+@else
+    <a href="{{ route('ulasan.create') }}" 
+       class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold">
+        Tulis Ulasan
+    </a>
+@endif
+
 </header>
 
 

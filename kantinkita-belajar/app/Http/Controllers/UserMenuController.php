@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth; // ★ WAJIB
 
 class UserMenuController extends Controller
 {
@@ -38,7 +40,14 @@ class UserMenuController extends Controller
 
         $semuamenu = $query->get();
 
-        return view('user.menu.menu', compact('semuamenu', 'allmenu'));
+        // ===== FIX: hitung cart user =====
+        $cart = Cart::where('id_user', Auth::user()->id_user)->get();
+        $total_items = $cart->sum('jumlah');
+        $total_price = $cart->sum(fn($i) => $i->jumlah * $i->menu->harga_menu);
+
+        return view('user.menu.menu', compact(
+            'semuamenu', 'allmenu', 'total_items', 'total_price'
+        ));
     }
 
     public function show($id)

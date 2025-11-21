@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -66,18 +68,28 @@
         }
     </style>
 </head>
+
 <body>
+
     <h2>Welcome Back!</h2>
-     @include('components.alerts')
+
+    {{-- ALERTS --}}
+    @include('components.alerts')
 
     <form action="{{ route('logincheck') }}" method="POST">
         @csrf
+
         <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+
         <input type="password" name="password" placeholder="Password" required>
+
         <input type="submit" value="Login">
-         <div class="redirect-link">
-    </div>
+
+        <div class="redirect-link">
+            {{-- Jika punya link register, masukkan di sini --}}
+            {{-- <a href="{{ route('register') }}">Create an account</a> --}}
+        </div>
     </form>
 
-
+</body>
 </html>

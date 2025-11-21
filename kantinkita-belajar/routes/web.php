@@ -69,7 +69,15 @@ Route::middleware(['auth'])->group(function () {
 
     // 🍱 MENU USER
     Route::get('/menu',      [UserMenuController::class, 'index'])->name('user.menu.index');
+
+    // ⚠ JSON route HARUS MENDULUI route show
+   Route::get('/menu/json/{id}', [UserMenuController::class, 'json'])
+    ->name('user.menu.json');
+
+
     Route::get('/menu/{id}', [UserMenuController::class, 'show'])->name('user.menu.show');
+
+
 
     // 👤 PROFIL USER
     Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
@@ -82,12 +90,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit/{id}',      [CartController::class, 'edit'])->name('edit');
         Route::put('/{id}',           [CartController::class, 'update'])->name('update');
         Route::delete('/{id}',        [CartController::class, 'destroy'])->name('destroy');
+        Route::put('/cart/update-all', [CartController::class, 'updateAll'])->name('updateAll');
     });
 
 
     // 🧾 PESANAN USER
     Route::prefix('user/pesanan')->name('user.pesanan.')->group(function () {
-
         Route::get('/',     [PesananController::class, 'index'])->name('index');
         Route::get('/{id}', [PesananController::class, 'show'])->name('show');
 
@@ -96,14 +104,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
-    // 🛒 CHECKOUT (buat pesanan baru)
+    // 🛒 CHECKOUT
     Route::post('/checkout', [PesananController::class, 'checkout'])->name('user.checkout');
 
 
-
-    // =========================
-    // ⭐ ULASAN USER (1 user = 1 ulasan)
-    // =========================
+    // ⭐ ULASAN USER
     Route::prefix('ulasan')->name('ulasan.')->group(function () {
 
         Route::get('/',         [UlasanController::class, 'index'])->name('index');
@@ -116,5 +121,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/delete',[UlasanController::class, 'destroy'])->name('destroy');
     });
+
+    Route::get('/featured-menu', [UserMenuController::class, 'featured'])->name('featured.menu');
 
 });

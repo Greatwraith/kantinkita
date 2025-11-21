@@ -1,286 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Pesanan Saya</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fafafa;
-            color: #222;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            padding: 20px 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        header img {
-            height: 45px;
-        }
-
-        header nav a {
-            margin: 0 20px;
-            color: #e53935;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        header nav a:hover {
-            text-decoration: underline;
-        }
-
-        h1 {
-            text-align: left;
-            margin: 30px 60px;
-            font-size: 28px;
-            font-weight: 600;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-between;
-            margin: 0 60px 60px;
-            gap: 30px;
-        }
-
-        /* Bagian kiri (item pesanan) */
-        .left {
-            flex: 2;
-        }
-
-        .user-card {
-            background: #d32f2f;
-            color: white;
-            padding: 18px 25px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 15px;
-            font-weight: 500;
-        }
-
-        .user-card img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            object-fit: cover;
-        }
-
-        .item-box {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 25px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-            margin-top: 15px;
-        }
-
-        .item img {
-            width: 70px;
-            height: 70px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
-        .item-info {
-            flex: 1;
-            margin-left: 15px;
-        }
-
-        .item-info h4 {
-            margin: 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .item-info p {
-            color: #d32f2f;
-            font-weight: 500;
-            margin-top: 4px;
-        }
-
-        .item-summary {
-            text-align: right;
-            font-size: 15px;
-        }
-
-        .item-summary span {
-            display: block;
-        }
-
-        .edit-link {
-            color: #d32f2f;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .edit-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Bagian kanan (ringkasan) */
-        .right {
-            flex: 1;
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-            height: fit-content;
-        }
-
-        .right h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-            font-size: 15px;
-        }
-
-        .summary-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            margin-top: 15px;
-            font-size: 16px;
-            color: #d32f2f;
-        }
-
-        .right button {
-            width: 100%;
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 15px;
-        }
-
-        .btn-add {
-            background: #e53935;
-            color: white;
-        }
-
-        .btn-add:hover {
-            background: #c62828;
-        }
-
-        .btn-confirm {
-            background: #3f51b5;
-            color: white;
-        }
-
-        .btn-confirm:hover {
-            background: #303f9f;
-        }
-    </style>
+    <title>Pesanan Saya - Kantin Kita</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
-<body>
 
-<header>
-    {{-- <img src="{{ asset('images/logo.png') }}" alt="Logo Kantin Kita"> --}}
-    <nav>
-        <a href="#">Beranda</a>
-        <a href="{{ route('user.menu.index') }}">Menu</a>
-        <a href="#">Tentang Kami</a>
-        <a href="#">Ulasan</a>
-    </nav>
-    <div class="user-circle">A</div>
-</header>
+<body class="bg-[#F1F5F2] font-[Poppins]">
 
-<h1>Pesanan saya</h1>
+{{-- NAVBAR --}}
+@include('components.navbar')
 
-@if($carts->isEmpty())
-    <p style="text-align:center; color:#999;">Keranjang kamu masih kosong 😅</p>
-@else
-<div class="container">
-    <div class="left">
-        {{-- Kartu User --}}
-        <div class="user-card">
-            {{-- <img src="{{ asset('images/default_avatar.png') }}" alt="User"> --}}
-            <div>
-                <div>{{ $carts->first()->user->name }}</div>
-                <div>{{ $carts->first()->user->nis }} - {{ $carts->first()->user->kelas }} {{ $carts->first()->user->jurusan }}</div>
-            </div>
-        </div>
+{{-- TITLE --}}
+<h1 class="text-3xl font-bold mt-10 ml-32">Pesanan saya</h1>
 
-        {{-- Item Pesanan --}}
-        <div class="item-box">
-            <div class="item-header">
-                <span>Item Pesanan</span>
-                <a href="{{ route('user.cart.edit', $carts->first()->id_keranjang) }}" class="edit-link">Edit Pesanan</a>
-            </div>
+{{-- USER CARD FULL WIDTH --}}
+<div class="mx-6 mt-5 bg-[#A00000] text-white p-5 rounded-xl shadow-lg flex items-center gap-4 w-[95%]">
 
-            @foreach($carts as $cart)
-            <div class="item">
-                <img src="{{ asset('storage/'.$cart->menu->gambar_menu) }}" alt="{{ $cart->menu->nama_menu }}">
-                <div class="item-info">
-                    <h4>{{ $cart->menu->nama_menu }}</h4>
-                    <p>Rp {{ number_format($cart->menu->harga_menu,0,',','.') }}</p>
-                </div>
-                <div class="item-summary">
-                    <span>Jumlah: {{ $cart->jumlah }}</span>
-                    <span>Subtotal: Rp {{ number_format($cart->total_harga,0,',','.') }}</span>
-                </div>
-            </div>
-            @endforeach
+    <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed={{ $carts->first()->user->name }}"
+         class="w-14 h-14 rounded-full bg-white p-1 shadow">
+
+    <div>
+        <div class="text-lg font-semibold">{{ $carts->first()->user->name }}</div>
+        <div class="text-sm opacity-90">
+            {{ $carts->first()->user->nis }} —
+            {{ $carts->first()->user->kelas }}
+            {{ $carts->first()->user->jurusan }}
         </div>
     </div>
-
-    {{-- Ringkasan Pesanan --}}
- {{-- Ringkasan Pesanan --}}
-<div class="right">
-    @php
-        $totalItem = $carts->sum('jumlah');
-        $totalMenu = $carts->count();   // total jenis menu
-        $subtotal = $carts->sum('total_harga');
-    @endphp
-    <h3>Ringkasan Pesanan</h3>
-    
-    <div class="summary-row"><span>Total Menu</span><span>{{ $totalMenu }}</span></div> {{-- Tambahan --}}
-    <div class="summary-row"><span>Total Item</span><span>{{ $totalItem }}</span></div>
-    <div class="summary-row"><span>Subtotal</span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
-    <hr>
-    <div class="summary-total"><span>Total</span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
-    <button class="btn-add" onclick="window.location='{{ route('user.menu.index') }}'">Tambah Pesanan</button>
-    <form action="{{ route('user.checkout') }}" method="POST">
-        @csrf
-        <button type="submit" class="btn-confirm">Konfirmasi Pesanan</button>
-    </form>
 </div>
 
+{{-- ALERTS --}}
+@if(session('success'))
+    <div class="mx-6 mt-4 p-4 bg-green-100 text-green-900 border-l-4 border-green-600 rounded-lg">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="mx-6 mt-4 p-4 bg-red-100 text-red-900 border-l-4 border-red-600 rounded-lg">
+        {{ session('error') }}
+    </div>
+@endif
+
+{{-- EMPTY CASE --}}
+@if($carts->isEmpty())
+    <p class="text-center text-gray-500 text-lg mt-10">Keranjang kamu masih kosong 😅</p>
+@else
+
+{{-- MAIN WRAPPER --}}
+<div class="flex flex-col lg:flex-row gap-6 mx-6 mt-6 pb-20">
+
+    {{-- LEFT CONTENT (ITEM LIST) --}}
+    <div class="flex-1">
+
+        <div class="bg-white rounded-xl shadow p-6 w-full">
+
+            {{-- HEADER --}}
+            <div class="flex justify-between mb-6">
+                <span class="text-xl font-semibold">Item Pesanan</span>
+                <a href="{{ route('user.cart.edit', $carts->first()->id_keranjang) }}"
+                   class="text-[#A00000] font-medium hover:underline">
+                    Edit Pesanan
+                </a>
+            </div>
+
+            {{-- ITEM CARDS --}}
+            @foreach($carts as $cart)
+            <div class="flex items-center justify-between p-3 mb-3 border rounded-2xl shadow-sm bg-white w-full">
+
+                {{-- FOTO + NAMA --}}
+                <div class="flex items-center gap-4 flex-grow">
+
+                    <img src="{{ asset('storage/'.$cart->menu->gambar_menu) }}"
+                         class="w-20 h-20 rounded-xl object-cover shadow">
+
+                    <div>
+                        <h4 class="font-semibold text-gray-900 text-lg">
+                            {{ $cart->menu->nama_menu }}
+                        </h4>
+
+                        <p class="text-[#A00000] font-semibold text-sm">
+                            Rp {{ number_format($cart->menu->harga_menu,0,',','.') }}
+                        </p>
+                    </div>
+
+                </div>
+
+                {{-- JUMLAH + SUBTOTAL --}}
+                <div class="flex flex-col w-56">
+
+                    {{-- LABEL --}}
+                    <div class="flex justify-between text-sm text-gray-600 font-medium mb-1">
+                        <span>Jumlah</span>
+                        <span>Subtotal</span>
+                    </div>
+
+                    {{-- DATA --}}
+                    <div class="flex justify-between items-center">
+
+                        <p class="text-xl font-semibold text-gray-900">
+                            {{ $cart->jumlah }}
+                        </p>
+
+                        <p class="text-xl font-semibold text-[#A00000]">
+                            Rp {{ number_format($cart->total_harga,0,',','.') }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+            @endforeach
+
+        </div>
+
+    </div>
+
+    {{-- RIGHT SIDEBAR SUMMARY --}}
+    <div class="bg-white p-6 shadow rounded-xl w-full lg:w-80 h-fit">
+
+        @php
+            $totalItem = $carts->sum('jumlah');
+            $totalMenu = $carts->count();
+            $subtotal = $carts->sum('total_harga');
+        @endphp
+
+        <h3 class="text-xl font-semibold mb-4">Ringkasan Pesanan</h3>
+
+        <div class="space-y-2 text-sm">
+            <div class="flex justify-between"><span>Total Menu</span><span>{{ $totalMenu }}</span></div>
+            <div class="flex justify-between"><span>Total Item</span><span>{{ $totalItem }}</span></div>
+            <div class="flex justify-between"><span>Subtotal</span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
+        </div>
+
+        <div class="border-t my-4"></div>
+
+        <div class="flex justify-between text-lg font-bold text-[#A00000] mb-4">
+            <span>Total</span>
+            <span>Rp {{ number_format($subtotal,0,',','.') }}</span>
+        </div>
+
+        <button onclick="window.location='{{ route('user.menu.index') }}'"
+                class="w-full py-3 rounded-xl bg-[#A00000] text-white font-semibold hover:bg-red-800 transition">
+            Tambah Pesanan
+        </button>
+
+        <form action="{{ route('user.checkout') }}" method="POST" class="mt-3">
+            @csrf
+            <button type="submit"
+                    class="w-full py-3 rounded-xl bg-[#3949AB] text-white font-semibold hover:bg-[#303F9F] transition">
+                Konfirmasi Pesanan
+            </button>
+        </form>
+
+    </div>
+
+</div>
 
 @endif
+
+@include('components.footer')
 
 </body>
 </html>
