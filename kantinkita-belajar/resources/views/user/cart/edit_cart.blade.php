@@ -51,75 +51,82 @@
                             Edit Pesanan
                         </h2>
 
-                        @foreach($carts as $cart)
+                    @foreach($carts as $cart)
 
-                            <div class="flex items-center justify-between border-t pt-4 first:border-t-0">
+<div class="flex items-center justify-between bg-white p-4 rounded-xl shadow border">
 
-                                {{-- IMAGE --}}
-                                <img src="{{ asset('storage/'.$cart->menu->gambar_menu) }}"
-                                    class="w-24 h-24 object-cover rounded-xl shadow-sm">
+    {{-- LEFT: IMAGE --}}
+    <img src="{{ asset('storage/'.$cart->menu->gambar_menu) }}"
+        class="w-28 h-28 object-cover rounded-xl shadow">
 
-                                {{-- INFO --}}
-                                <div class="flex-1 ml-6">
+    {{-- MIDDLE: INFO + QTY --}}
+    <div class="flex flex-col ml-6 flex-1">
 
-                                    <h3 class="font-semibold text-gray-800 text-lg">
-                                        {{ $cart->menu->nama_menu }}
-                                    </h3>
+        {{-- Judul --}}
+        <h3 class="font-semibold text-gray-900 text-xl">
+            {{ $cart->menu->nama_menu }}
+        </h3>
 
-                                    <p class="text-red-600 font-medium text-md mt-1">
-                                        Rp {{ number_format($cart->menu->harga_menu,0,',','.') }}
-                                    </p>
+        {{-- Harga --}}
+        <p class="text-red-600 font-semibold text-lg mt-1">
+            Rp {{ number_format($cart->menu->harga_menu,0,',','.') }}
+        </p>
 
-                                    {{-- BUTTON QTY --}}
-                                    <div class="flex items-center mt-3 gap-2">
+        {{-- QTY --}}
+        <div class="flex items-center gap-4 mt-4">
 
-                                        <button type="button"
-                                            onclick="changeQty({{ $cart->id_keranjang }}, -1)"
-                                            class="px-3 py-1 bg-red-600 text-white rounded-lg">
-                                            -
-                                        </button>
+            {{-- MIN BUTTON --}}
+            <button type="button"
+                onclick="changeQty({{ $cart->id_keranjang }}, -1)"
+                class="w-10 h-10 rounded-full bg-red-700 text-white flex items-center justify-center text-xl">
+                -
+            </button>
 
-                                        <input type="number"
-                                            name="jumlah[{{ $cart->id_keranjang }}]"
-                                            id="jumlah-{{ $cart->id_keranjang }}"
-                                            value="{{ $cart->jumlah }}"
-                                            min="1"
-                                            class="w-16 text-center border rounded-lg">
+            {{-- INPUT --}}
+            <input type="number"
+                name="jumlah[{{ $cart->id_keranjang }}]"
+                id="jumlah-{{ $cart->id_keranjang }}"
+                value="{{ $cart->jumlah }}"
+                min="1"
+                class="w-12 text-center text-lg border rounded-lg">
 
-                                        <button type="button"
-                                            onclick="changeQty({{ $cart->id_keranjang }}, 1)"
-                                            class="px-3 py-1 bg-red-600 text-white rounded-lg">
-                                            +
-                                        </button>
+            {{-- PLUS BUTTON --}}
+            <button type="button"
+                onclick="changeQty({{ $cart->id_keranjang }}, 1)"
+                class="w-10 h-10 rounded-full bg-red-700 text-white flex items-center justify-center text-xl">
+                +
+            </button>
 
-                                    </div>
+        </div>
 
-                                    {{-- DELETE BUTTON --}}
-                                    <button type="button"
-                                        onclick="deleteItem({{ $cart->id_keranjang }})"
-                                        class="text-red-600 hover:underline mt-2">
-                                        Hapus
-                                    </button>
+    </div>
 
-                                </div>
+    {{-- RIGHT: DELETE BUTTON --}}
+    <button type="button"
+        onclick="deleteItem({{ $cart->id_keranjang }})"
+        class="flex items-center gap-2 bg-red-700 text-white py-2 px-5 rounded-xl hover:bg-red-800 whitespace-nowrap">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+             class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M6 7h12M9 7V4h6v3m-1 4v7m-4-7v7M4 7h16l-1 12a2 2 0 01-2 2H7a2 2 0 01-2-2L4 7z" />
+        </svg>
+        Hapus
+    </button>
 
-                                {{-- SUBTOTAL --}}
-                                <div class="text-right">
-                                    <p class="text-gray-500 text-sm">Subtotal:</p>
-                                    <p class="font-semibold text-gray-800 text-lg">
-                                        Rp {{ number_format($cart->total_harga,0,',','.') }}
-                                    </p>
-                                </div>
+</div>
 
-                            </div>
+@endforeach
 
-                        @endforeach
 
                         {{-- SAVE BUTTON --}}
-                        <button type="submit"
-                            class="w-full mt-6 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700">
-                            Simpan Semua Perubahan
-                        </button>
+                    <div class="mt-6 flex justify-center">
+    <button type="submit"
+        class="bg-[#51578A] text-white py-2 px-6 rounded-lg hover:bg-[#414774] transition">
+        Simpan Semua Perubahan
+    </button>
+</div>
+
 
                     </div>
                 </form>
@@ -210,3 +217,4 @@
 
 </body>
 </html>
+

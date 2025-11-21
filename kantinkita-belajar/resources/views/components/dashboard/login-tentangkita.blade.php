@@ -28,16 +28,15 @@
 
         <!-- LEFT: IMAGE GRID -->
         <div class="grid grid-cols-2 gap-6">
+            <img src="/images/interiorkantin.png" class="w-full h-44 rounded-xl object-cover shadow-lg">
             <img src="/images/tampakluar.png" class="w-full h-44 rounded-xl object-cover shadow-lg">
-            <img src="/images/static/kantin-2.jpg" class="w-full h-44 rounded-xl object-cover shadow-lg">
-            <img src="/images/static/kantin-3.jpg" class="w-full h-44 rounded-xl object-cover shadow-lg">
-            <img src="/images/static/kantin-4.jpg" class="w-full h-44 rounded-xl object-cover shadow-lg">
+            <img src="/images/icecream.png" class="w-full h-44 rounded-xl object-cover shadow-lg">
+            <img src="/images/orangbelanja.png" class="w-full h-44 rounded-xl object-cover shadow-lg">
         </div>
 
         <!-- RIGHT: FEATURES LIST -->
         <div class="flex flex-col justify-center pl-2">
 
-            <!-- ITEM 1 -->
             <div class="mb-10">
                 <h3 class="text-2xl font-semibold tracking-tight flex items-start gap-3">
                    <x-iconpark-correct class="w-6 h-6" />
@@ -49,7 +48,6 @@
                 </p>
             </div>
 
-            <!-- ITEM 2 -->
             <div class="mb-10">
                 <h3 class="text-2xl font-semibold tracking-tight flex items-start gap-3">
                   <x-iconpark-correct class="w-6 h-6" />
@@ -60,7 +58,6 @@
                 </p>
             </div>
 
-            <!-- ITEM 3 -->
             <div class="mb-10">
                 <h3 class="text-2xl font-semibold tracking-tight flex items-start gap-3">
                    <x-iconpark-correct class="w-6 h-6" />
@@ -71,18 +68,15 @@
                 </p>
             </div>
 
-          <!-- BUTTON -->
-<div class="flex justify-end mt-8">
-    <a href="/kontak"
-       class="inline-flex items-center gap-2 border-2 border-white text-white py-1 px-12 
-              font-semibold text-base tracking-tight rounded-xl
-              hover:bg-white hover:text-[#b8141a] transition">
-        <x-grommet-phone class="w-6 h-6" />
-        Hubungi Kami
-    </a>
-</div>
-
-
+            <div class="flex justify-end mt-8">
+                <a href="https://wa.me/12345678910"
+                class="inline-flex items-center gap-2 border-2 border-white text-white py-1 px-12 
+                        font-semibold text-base tracking-tight rounded-xl
+                        hover:bg-white hover:text-[#b8141a] transition">
+                    <x-grommet-phone class="w-6 h-6" />
+                    Hubungi Kami
+                </a>
+            </div>
 
         </div>
     </div>

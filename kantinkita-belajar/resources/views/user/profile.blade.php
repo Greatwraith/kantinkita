@@ -21,11 +21,9 @@
 
       <!-- FOTO + IDENTITAS -->
       <div class="flex items-center gap-4 mb-6">
-        <img 
-          src="{{ $user->avatar ?? 'https://i.pravatar.cc/120' }}" 
-          class="w-24 h-24 rounded-full object-cover border"
-          alt="Foto Profil"
-        >
+
+         <x-carbon-user-avatar-filled   class="w-24 h-24 rounded-full object-cover border"
+          alt="Foto Profil"  />
         <div>
           <h2 class="text-xl font-bold">{{ $user->name }}</h2>
           <p class="text-gray-600 text-sm">{{ $user->nis ?? '-' }}</p>

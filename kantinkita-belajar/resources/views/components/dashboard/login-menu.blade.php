@@ -32,11 +32,13 @@
 
         <!-- Basreng -->
         <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
+
             <div class="absolute right-4 top-4 bg-white p-2 rounded-full shadow">
                 <i class="fa-regular fa-heart text-[#b8141a]"></i>
             </div>
 
-            <img src="/images/static/basreng.jpg" class="w-full h-48 object-contain bg-white">
+            <img src="https://id-live-01.slatic.net/p/aa811a86c3067597010617bbe9e42f3a.jpg"
+                 class="w-full h-48 object-cover">
 
             <div class="p-4">
                 <h3 class="text-lg font-semibold">Basreng Pedas</h3>
@@ -53,7 +55,8 @@
 
         <!-- Ultra Milk -->
         <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-            <img src="/images/static/ultra-milk.jpg" class="w-full h-48 object-contain bg-white">
+            <img src="https://image.astronauts.cloud/product-images/2024/4/UltraMilkUHTStrawberrySusuUHT1_654139ee-07d1-41ea-a82d-bd329935e8d8_900x900.jpeg"
+                 class="w-full h-48 object-cover">
 
             <div class="p-4">
                 <h3 class="text-lg font-semibold">Ultra Milk Strawberry</h3>
@@ -70,7 +73,8 @@
 
         <!-- Risol -->
         <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-            <img src="/images/static/risol.jpg" class="w-full h-48 object-contain bg-white">
+            <img src="https://png.pngtree.com/png-vector/20250707/ourmid/pngtree-indonesian-savory-snack-risoles-with-cheese-filling-risol-mayo-png-image_16716027.webp"
+                 class="w-full h-48 object-cover">
 
             <div class="p-4">
                 <h3 class="text-lg font-semibold">Risol Mayo</h3>
@@ -87,7 +91,8 @@
 
         <!-- Sandwich -->
         <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-            <img src="/images/static/sandwich.jpg" class="w-full h-48 object-contain bg-white">
+            <img src="https://static.toiimg.com/thumb/83740315.cms?imgsize=361903&width=800&height=800"
+                 class="w-full h-48 object-cover">
 
             <div class="p-4">
                 <h3 class="text-lg font-semibold">Sandwich</h3>
@@ -105,7 +110,6 @@
     </div>
 
 
-
     <!-- ====================================================== -->
     <!--                       MAKANAN                         -->
     <!-- ====================================================== -->
@@ -115,7 +119,9 @@
 
             <!-- Basreng -->
             <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-                <img src="/images/static/basreng.jpg" class="w-full h-48 object-contain bg-white">
+                <img src="https://id-live-01.slatic.net/p/aa811a86c3067597010617bbe9e42f3a.jpg"
+                     class="w-full h-48 object-cover">
+
                 <div class="p-4">
                     <h3 class="text-lg font-semibold">Basreng Pedas</h3>
 
@@ -131,7 +137,8 @@
 
             <!-- Risol -->
             <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-                <img src="/images/static/risol.jpg" class="w-full h-48 object-contain bg-white">
+                <img src="https://png.pngtree.com/png-vector/20250707/ourmid/pngtree-indonesian-savory-snack-risoles-with-cheese-filling-risol-mayo-png-image_16716027.webp"
+                     class="w-full h-48 object-cover">
 
                 <div class="p-4">
                     <h3 class="text-lg font-semibold">Risol Mayo</h3>
@@ -148,7 +155,8 @@
 
             <!-- Sandwich -->
             <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-                <img src="/images/static/sandwich.jpg" class="w-full h-48 object-contain bg-white">
+                <img src="https://static.toiimg.com/thumb/83740315.cms?imgsize=361903&width=800&height=800"
+                     class="w-full h-48 object-cover">
 
                 <div class="p-4">
                     <h3 class="text-lg font-semibold">Sandwich</h3>
@@ -165,7 +173,8 @@
 
             <!-- Brownies -->
             <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-                <img src="/images/static/brownies.jpg" class="w-full h-48 object-contain bg-white">
+                <img src="https://d12man5gwydfvl.cloudfront.net/wp-content/uploads/2020/02/HappyFresh_resep_brownies_kukus.jpg"
+                     class="w-full h-48 object-cover">
 
                 <div class="p-4">
                     <h3 class="text-lg font-semibold">Brownies</h3>
@@ -184,7 +193,6 @@
     </div>
 
 
-
     <!-- ====================================================== -->
     <!--                       MINUMAN                         -->
     <!-- ====================================================== -->
@@ -194,7 +202,8 @@
 
             <!-- Ultra Milk -->
             <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-                <img src="/images/static/ultra-milk.jpg" class="w-full h-48 object-contain bg-white">
+                <img src="https://image.astronauts.cloud/product-images/2024/4/UltraMilkUHTStrawberrySusuUHT1_654139ee-07d1-41ea-a82d-bd329935e8d8_900x900.jpeg"
+                     class="w-full h-48 object-cover">
 
                 <div class="p-4">
                     <h3 class="text-lg font-semibold">Ultra Milk Strawberry</h3>
@@ -211,7 +220,8 @@
 
             <!-- Milo -->
             <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-                <img src="/images/static/milo.jpg" class="w-full h-48 object-contain bg-white">
+                <img src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/89/MTA-158220150/br-m036969-02161_milo-rtd-activ-go-original-tin-220ml_full01-f8905e49.jpg"
+                     class="w-full h-48 object-cover">
 
                 <div class="p-4">
                     <h3 class="text-lg font-semibold">Milo Original</h3>
@@ -228,7 +238,8 @@
 
             <!-- Air Mineral -->
             <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-                <img src="/images/static/aqua.jpg" class="w-full h-48 object-contain bg-white">
+                <img src="https://drivethru.klikindomaret.com/tz0m/wp-content/uploads/sites/23/2021/05/le-minerale-600ml-1.jpg"
+                     class="w-full h-48 object-cover">
 
                 <div class="p-4">
                     <h3 class="text-lg font-semibold">Air Mineral</h3>
@@ -245,7 +256,8 @@
 
             <!-- Golda -->
             <div class="bg-white shadow-lg rounded-xl overflow-hidden relative">
-                <img src="/images/static/golda.jpg" class="w-full h-48 object-contain bg-white">
+                <img src="https://down-id.img.susercontent.com/file/5954aaefe31c710c6bcf407cfe847618"
+                     class="w-full h-48 object-cover">
 
                 <div class="p-4">
                     <h3 class="text-lg font-semibold">Golda Dolce Latte</h3>

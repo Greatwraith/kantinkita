@@ -17,6 +17,7 @@
 <h1 class="text-3xl font-bold mt-10 ml-32">Pesanan saya</h1>
 
 {{-- USER CARD FULL WIDTH --}}
+@if(!$carts->isEmpty())
 <div class="mx-6 mt-5 bg-[#A00000] text-white p-5 rounded-xl shadow-lg flex items-center gap-4 w-[95%]">
 
     <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed={{ $carts->first()->user->name }}"
@@ -31,6 +32,8 @@
         </div>
     </div>
 </div>
+@endif
+
 
 {{-- ALERTS --}}
 @if(session('success'))

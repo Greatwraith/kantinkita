@@ -8,11 +8,38 @@ use Illuminate\Support\Facades\Storage;
 
 class UlasanController extends Controller
 {
-    public function index()
-    {
-        $ulasans = Ulasan::with('user')->orderBy('created_at', 'DESC')->get();
-        return view('user.ulasan.ulasan', compact('ulasans'));
+    public function index(Request $request)
+{
+    // Semua ulasan untuk menghitung total bintang
+    $all = Ulasan::all();
+
+    $counts = [
+        5 => $all->where('rating', 5)->count(),
+        4 => $all->where('rating', 4)->count(),
+        3 => $all->where('rating', 3)->count(),
+        2 => $all->where('rating', 2)->count(),
+        1 => $all->where('rating', 1)->count(),
+    ];
+
+    $total = $all->count();
+
+    // FILTER
+    $query = Ulasan::with('user');
+
+    if ($request->has('rating')) {
+        $query->where('rating', $request->rating);
     }
+
+    // Data yang tampil
+    $ulasans = $query->orderBy('created_at', 'DESC')->get();
+
+    return view('user.ulasan.ulasan', compact(
+        'ulasans',
+        'total',
+        'counts'
+    ));
+}
+
 
     public function create()
     {
@@ -118,4 +145,7 @@ class UlasanController extends Controller
         return redirect()->route('ulasan.index')
                          ->with('success', 'Ulasan berhasil dihapus.');
     }
+
+
+    
 }

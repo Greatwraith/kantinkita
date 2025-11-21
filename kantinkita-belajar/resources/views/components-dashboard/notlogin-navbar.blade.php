@@ -6,7 +6,7 @@
 
         <!-- LOGO -->
         <div class="flex items-center gap-3 cursor-pointer" onclick="scrollToSection('home')">
-            <img src="/images/static/logo.png" class="w-10">
+            <img src="/images/logo-telkom-removebg-preview.png" class="w-10">
             <h1 class="text-xl font-semibold text-gray-800">Kantin Kita</h1>
         </div>
 

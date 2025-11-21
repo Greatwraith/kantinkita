@@ -73,7 +73,7 @@
 
           <!-- BUTTON -->
 <div class="flex justify-end mt-8">
-    <a href="/kontak"
+    <a href="https://wa.me/12345678910"
        class="inline-flex items-center gap-2 border-2 border-white text-white py-1 px-12 
               font-semibold text-base tracking-tight rounded-xl
               hover:bg-white hover:text-[#b8141a] transition">

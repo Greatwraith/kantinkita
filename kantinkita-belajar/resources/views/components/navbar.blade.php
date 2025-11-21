@@ -1,12 +1,21 @@
 <nav class="flex items-center justify-between px-8 py-4 bg-white shadow-sm">
 
-    <!-- Logo -->
-    <div class="flex items-center gap-3">
-        <div>
-            <h1 class="font-bold text-lg leading-tight">Kantin Kita</h1>
-            <p class="text-xs text-gray-500 -mt-1">SMK Telkom Banjarbaru</p>
-        </div>
+   <!-- Logo -->
+<div class="flex items-center gap-3">
+
+    <!-- LOGO -->
+    <img src="{{ asset('images/logo-telkom-removebg-preview.png') }}" 
+         alt="Logo Kantin Kita" 
+         class="w-12 h-12 object-contain">
+
+    <!-- TEXT -->
+    <div class="-mt-1 leading-tight">
+        <h1 class="font-bold text-lg">Kantin Kita</h1>
+        <p class="text-xs text-gray-500">SMK Telkom Banjarbaru</p>
     </div>
+
+</div>
+
 
     <!-- Search Bar -->
     <form action="{{ route('user.menu.index') }}" method="GET" class="flex items-center w-1/3 relative">
@@ -42,7 +51,11 @@
         </a>
         @endauth
 
-        <a href="#" class="hover:text-red-600">Tentang Kami</a>
+     <a href="{{ route('tentangkita') }}">
+    Tentang Kami
+</a>
+
+
 
         <a href="{{ route('ulasan.index') }}" 
             class="{{ Route::is('ulasan.index') ? 'text-red-600 border-b-2 border-red-600 pb-1' : 'hover:text-red-600' }}">
@@ -89,12 +102,11 @@
 
                 <!-- Logout -->
                 <hr>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="w-full text-left px-4 py-2 hover:bg-gray-100 ">
-                        Keluar
-                    </button>
-                </form>
+               <button onclick="window.location='{{ route('logout') }}'"
+        class="w-full text-left px-4 py-2 hover:bg-gray-100">
+    Keluar
+</button>
+
 
             </div>
         </div>

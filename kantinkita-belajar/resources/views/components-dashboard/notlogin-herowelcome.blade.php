@@ -5,7 +5,7 @@
         {{-- LEFT — ILLUSTRATION --}}
         <div class="flex justify-center">
             <img 
-                {{-- src="{{ asset('images/chef-illustration.png') }}"  --}}
+                src="{{ asset('images/chef.png') }}" 
                 alt="Chef"
                 class="w-[350px] lg:w-[430px]"
             >
@@ -35,7 +35,7 @@
                     Lihat Menu
                 </a>
 
-                <a href="/about" 
+                <a href="{{ route('tentangkita') }}" 
                    class="px-6 py-3 border border-[#b8141a] text-[#b8141a] hover:bg-[#b8141a] hover:text-white rounded-lg font-semibold transition">
                     Pelajari Lebih Lanjut
                 </a>

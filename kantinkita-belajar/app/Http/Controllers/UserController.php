@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Menu;
 use App\Models\Pesanan;   // ← WAJIB DITAMBAH
+use App\Models\Ulasan;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -185,4 +186,38 @@ public function goDashboard()
         Auth::logout();
         return redirect()->route('login')->with('success', 'You have logged out successfully.');
     }
+
+public function index(Request $request)
+{
+    $query = Ulasan::query();
+
+    if ($request->has('rating')) {
+        $query->where('rating', $request->rating);
+    }
+
+    $ulasans = $query->latest()->get();
+
+    $total = $ulasans->count();
+    $counts = [
+        5 => $ulasans->where('rating', 5)->count(),
+        4 => $ulasans->where('rating', 4)->count(),
+        3 => $ulasans->where('rating', 3)->count(),
+        2 => $ulasans->where('rating', 2)->count(),
+        1 => $ulasans->where('rating', 1)->count(),
+    ];
+
+    return view('user.ulasan.ulasan', compact(
+        'ulasans',
+        'total',
+        'counts'
+    ));
+}
+
+public function adminProfile()
+{
+    $user = Auth::user(); // admin yang sedang login
+    return view('admin.profile', compact('user'));
+}
+
+
 }
