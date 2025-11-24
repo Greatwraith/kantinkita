@@ -64,10 +64,10 @@ public function index(Request $request)
         $request->validate([
             'nama_kategori' => 'required|in:Makanan,Minuman',
             'nama_menu'     => 'required|string|max:255',
-            'harga_menu' => 'required|numeric|min:1000',
+            'harga_menu' => 'required|integer|min:1000',
             'deskripsi_menu'=> 'nullable|string',
             'gambar_menu'   => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:30720', // 30MB
-            'status_menu'   => 'required|in:tersedia,habis',
+            'status_menu'   => 'required|in:tersedia',
             'stok_menu'     => 'required|integer|min:1',
         ]);
 
@@ -110,10 +110,10 @@ public function index(Request $request)
         $request->validate([
             'nama_kategori' => 'required|in:Makanan,Minuman',
             'nama_menu'     => 'required|string|max:255',
-            'harga_menu' => 'required|numeric|min:1000',
+            'harga_menu' => 'required|integer|min:1000',
             'deskripsi_menu'=> 'nullable|string',
             'gambar_menu'   => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:30720',
-            'status_menu'   => 'required|in:tersedia,habis',
+            'status_menu'   => 'required|in:tersedia',
             'stok_menu'     => 'required|integer|min:1',
         ]);
 

@@ -98,7 +98,6 @@
                 class="w-full border bg-white text-black rounded-md focus:ring-red-300 focus:border-red-300 p-2"
                 required>
             <option value="tersedia" {{ old('status_menu') == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-            <option value="habis" {{ old('status_menu') == 'habis' ? 'selected' : '' }}>Habis</option>
         </select>
     </div>
 

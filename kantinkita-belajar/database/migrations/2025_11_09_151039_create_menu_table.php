@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->decimal('harga_menu', 12, 2);
             $table->text('deskripsi_menu');
             $table->string('gambar_menu', 255);
-            $table->enum('status_menu', ['tersedia', 'habis'])->default('tersedia');
+            $table->enum('status_menu', ['tersedia'])->default('tersedia');
             $table->integer('stok_menu');
             $table->timestamps();
         });

@@ -66,28 +66,28 @@ class CartController extends Controller
 }
 
 
-   public function update(Request $request, $id)
-{
-    $cart = Cart::findOrFail($id);
-    $menu = Menu::findOrFail($cart->id_menu);
-    $jumlahBaru = (int) $request->input('jumlah');
+//    public function update(Request $request, $id)
+// {
+//     $cart = Cart::findOrFail($id);
+//     $menu = Menu::findOrFail($cart->id_menu);
+//     $jumlahBaru = (int) $request->input('jumlah');
 
-    if ($jumlahBaru < 1) {
-        return back()->with('error', 'Jumlah minimal 1.');
-    }
+//     if ($jumlahBaru < 1) {
+//         return back()->with('error', 'Jumlah minimal 1.');
+//     }
 
-    if ($jumlahBaru > $menu->stok_menu) {
-        return back()->with('error', 'Stok tidak mencukupi.');
-    }
+//     if ($jumlahBaru > $menu->stok_menu) {
+//         return back()->with('error', 'Stok tidak mencukupi.');
+//     }
 
-    $cart->jumlah = $jumlahBaru;
-    $cart->total_harga = $jumlahBaru * $menu->harga_menu;
-    $cart->save();
+//     $cart->jumlah = $jumlahBaru;
+//     $cart->total_harga = $jumlahBaru * $menu->harga_menu;
+//     $cart->save();
 
-    // ❌ Jangan redirect ke index, tapi kembali ke edit_cart
-    return redirect()->route('user.cart.edit', $cart->id_keranjang)
-                     ->with('success', 'Keranjang berhasil diperbarui.');
-}
+//     // ❌ Jangan redirect ke index, tapi kembali ke edit_cart
+//     return redirect()->route('user.cart.edit', $cart->id_keranjang)
+//                      ->with('success', 'Keranjang berhasil diperbarui.');
+// }
 
 public function updateAll(Request $request)
 {

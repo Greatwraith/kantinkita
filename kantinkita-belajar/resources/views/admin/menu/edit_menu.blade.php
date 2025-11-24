@@ -110,7 +110,6 @@
                 class="w-full border border-white bg-white text-black rounded-md
                        focus:ring-red-300 focus:border-red-300 p-2">
             <option value="tersedia" {{ old('status_menu', $menu->status_menu) == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-            <option value="habis"     {{ old('status_menu', $menu->status_menu) == 'habis' ? 'selected' : '' }}>Habis</option>
         </select>
         @error('status_menu') <p class="text-white text-sm mt-1">{{ $message }}</p> @enderror
     </div>
