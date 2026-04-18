@@ -88,12 +88,4 @@ git clone https://github.com/yourusername/kantin-kita.git
 
 
 
-## The Developer
 
-Built by **Ardhan** — a software development student at SMK Telkom Banjarbaru with a parallel interest in systems thinking, investment analysis, and building things that are precise by intention rather than accident.
-
-This project sits at the intersection of academic work and engineering discipline. The context is a school assignment. The mindset was not.
-
----
-
-*Kantin Kita — built small, thought through.*
